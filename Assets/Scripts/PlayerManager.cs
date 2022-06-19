@@ -10,34 +10,34 @@ public class PlayerManager : MonoBehaviour
     private float maxSpeed = 2.0f;  // this is the speed needed to reach the final animation state
 
     [SerializeField]
-    [Range(1f,5.0f)]
-    private float accelerationSpeed;
+    [Range(1f,2.5f)]
+    private float accelerationSpeed;  // the acceleration can be controlled from the inspector
 
     private void Start()
     {
-        _Animator = GetComponent<Animator>();
+        _Animator = GetComponent<Animator>();  // get the animator component and store it for future use
     }
 
     private void Update()
     {
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))  
         {
-            MoveLeft();
+            MoveLeft();  // call the method to turn left
         }
         
         if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            MoveRight();
+            MoveRight();  // call the method to turn right
         }
         
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            MoveForward();
+            MoveForward();  // call the method to move forwards
         }
 
         if(!Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            HaltMovement();
+            HaltMovement();  // calls the method when the player does not provide any input
         }
 
         _Animator.SetFloat("SpeedX", speedX);
@@ -49,7 +49,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(speedX > -maxSpeed)
         {
-            speedX -= accelerationSpeed * Time.deltaTime;
+            speedX -= accelerationSpeed * Time.deltaTime;  // move the player in the negative X axis - i.e., left
         }
     }
     
@@ -57,7 +57,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(speedX < maxSpeed)
         {
-            speedX += accelerationSpeed * Time.deltaTime;
+            speedX += accelerationSpeed * Time.deltaTime;  // move the player in the positive X axis
         }
     }
     
@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(speedZ < maxSpeed)
         {
-            speedZ += accelerationSpeed * Time.deltaTime;
+            speedZ += accelerationSpeed * Time.deltaTime;  // move the player along the Z axis - i.e., forward
         }      
     }
 
@@ -73,7 +73,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(speedZ > 0.0f)
         {
-            speedZ -= accelerationSpeed * Time.deltaTime;
+            speedZ -= accelerationSpeed * Time.deltaTime;  // move the player in the negative Z axis - i.e, stop
         }
         else if(speedZ < 0.0f)
         {
