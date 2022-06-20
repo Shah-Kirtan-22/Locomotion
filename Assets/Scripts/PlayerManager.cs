@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         _Animator = GetComponent<Animator>();  // get the animator component and store it for future use
+        Time.timeScale = 0.5f;  // the application will work at 0.5 speed the real time
     }
 
     private void Update()
